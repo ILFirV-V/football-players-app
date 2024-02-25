@@ -3,14 +3,31 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './components/UI/footer/footer.component';
+import { HeaderComponent } from './components/UI/header/header.component';
+import { PlayerAddComponent } from './components/player-add/player-add.component';
+import { AddingFootballPlayersPageComponent } from './pages/adding-football-players-page/adding-football-players-page.component';
+import { ListFootballPlayersPageComponent } from './pages/list-football-players-page/list-football-players-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent,
+    HeaderComponent,
+    PlayerAddComponent,
+    AddingFootballPlayersPageComponent,
+    ListFootballPlayersPageComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    CommonModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
