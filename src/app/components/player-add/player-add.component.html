@@ -91,4 +91,9 @@
     </div>
   </div>
   <button type="submit" class="btn btn-primary" [disabled]="!areFieldsFilled()">Добавить</button>
+  <button type="addTeam" class="btn btn-primary" (click) = "onChangedAddTeam()">Создать новую команду</button>
 </form>
+<app-team-add
+    *ngIf="isViewAddTeam"
+    (onChanged)="onChanged()"
+></app-team-add>

@@ -7,7 +7,7 @@ import { ICountryResponse } from '../models/interfaces/response/country-interfac
   providedIn: 'root'
 })
 export class CountryService {
-  url: string = `https://localhost:7039/countries`;
+  url: string = `https://localhost:7024/countries`;
 
   constructor(private http: HttpClient) { }
 

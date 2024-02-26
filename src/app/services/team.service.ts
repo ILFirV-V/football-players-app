@@ -8,7 +8,7 @@ import { ITeam } from '../models/interfaces/request/team-interface';
   providedIn: 'root'
 })
 export class TeamService {
-  url: string = `https://localhost:7039/teams`;
+  url: string = `https://localhost:7024/teams`;
 
   constructor(private http: HttpClient) { }
 

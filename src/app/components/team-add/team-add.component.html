@@ -1,0 +1,17 @@
+<form (ngSubmit)="onSubmit()" #footballerForm="ngForm">
+    <div class="form-group">
+      <label for="firstName">Имя новой команды:</label>
+      <input type="text" 
+        class="form-control" 
+        id="name" 
+        name="name"
+        #name="ngModel"
+        [(ngModel)]="team.name" 
+        required >
+      <div [hidden]="name.valid || name.pristine"
+        class="alert alert-danger">
+        Поле для имени нужно заполнить
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!areFieldsFilled()">Создать</button>
+</form>

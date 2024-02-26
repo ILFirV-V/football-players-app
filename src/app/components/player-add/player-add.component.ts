@@ -17,6 +17,8 @@ export class PlayerAddComponent {
     footballer: IFootballPlayer = new Footballer();
     teams$: Observable<ITeamResponse[]> | undefined;
     countries$: Observable<ICountryResponse[]> | undefined;
+    submitted = false;
+    isViewAddTeam: boolean = false;
 
     constructor(
         private countryService: CountryService,
@@ -29,15 +31,19 @@ export class PlayerAddComponent {
         this.countries$ = this.countryService.getCountries();
     }
 
-    submitted = false;
-
     onSubmit() { 
         if (this.areFieldsFilled()) {
             this.submitted = true;   
             console.log(this.footballer);
-            this.playerService.addPlayer(this.footballer);
+            this.playerService.addPlayer(this.footballer).subscribe(
+                response => 
+                {
+                  this.footballer = new Footballer();
+                  console.log('Post request successful', response);
+                },
+                error => console.error('Error in post request', error)
+            );
         } else {
-            // Дополнительная логика, если не все поля заполнены
             console.log('Please fill in all fields before submitting.');
         }
     }
@@ -49,6 +55,15 @@ export class PlayerAddComponent {
             && !!this.footballer.countryId 
             && !!this.footballer.birthday 
             && !!this.footballer.gender;
+    }
+
+    onChanged() {
+        this.teams$ = this.teamService.getTeams();
+        this.onChangedAddTeam();
+    }
+
+    onChangedAddTeam() {
+        this.isViewAddTeam = !this.isViewAddTeam;
     }
 }
 

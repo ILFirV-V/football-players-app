@@ -10,7 +10,7 @@ import { IFootballPlayer } from '../models/interfaces/request/football-player-in
     providedIn: 'root'
 })
 export class PlayerService {
-    url: string = `https://localhost:7039/players`;
+    url: string = `https://localhost:7024/players`;
 
 constructor(private http: HttpClient) { }
 

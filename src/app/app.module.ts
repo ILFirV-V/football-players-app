@@ -11,6 +11,8 @@ import { ListFootballPlayersPageComponent } from './pages/list-football-players-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { TeamAddComponent } from './components/team-add/team-add.component';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     PlayerAddComponent,
     AddingFootballPlayersPageComponent,
     ListFootballPlayersPageComponent,
+    TeamAddComponent,
   ],
   imports: [
     BrowserModule,
