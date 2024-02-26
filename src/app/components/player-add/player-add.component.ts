@@ -7,7 +7,6 @@ import { PlayerService } from '../../services/players.service';
 import { Observable } from "rxjs";
 import { ITeamResponse } from '../../models/interfaces/response/team-interface-response';
 import { ICountryResponse } from '../../models/interfaces/response/country-interface-response';
-import { Gender } from "../../models/enums/gender.enum";
 
 @Component({
     selector: 'app-player-add',
@@ -26,26 +25,20 @@ export class PlayerAddComponent {
         private playerService: PlayerService,
         private teamService: TeamService,
     ) { }
+
     ngOnInit(): void {
         this.teams$ = this.teamService.getTeams();
         this.countries$ = this.countryService.getCountries();
     }
 
     onSubmit() { 
-        if (this.areFieldsFilled()) {
-            this.submitted = true;   
-            console.log(this.footballer);
-            this.playerService.addPlayer(this.footballer).subscribe(
-                response => 
-                {
-                  this.footballer = new Footballer();
-                  console.log('Post request successful', response);
-                },
-                error => console.error('Error in post request', error)
-            );
-        } else {
+        if (!this.areFieldsFilled())
+        {
             console.log('Please fill in all fields before submitting.');
+            return;
         }
+        this.submitted = true;   
+        this.create(this.playerService);
     }
 
     areFieldsFilled(): boolean {
@@ -65,5 +58,15 @@ export class PlayerAddComponent {
     onChangedAddTeam() {
         this.isViewAddTeam = !this.isViewAddTeam;
     }
-}
 
+    private create(playerService: PlayerService) {
+        playerService.addPlayer(this.footballer).subscribe(
+            response => 
+            {
+              this.footballer = new Footballer();
+              console.log('Post request successful', response);
+            },
+            error => console.error('Error in post request', error)
+        );
+    }
+}

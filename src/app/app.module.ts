@@ -15,6 +15,8 @@ import { TeamAddComponent } from './components/team-add/team-add.component';
 import { FootballPlayerComponent } from './components/football-player/football-player.component';
 import { FootballPlayerListComponent } from './components/football-player-list/football-player-list.component';
 import { GenderTextPipe } from './pipes/gender-text.pipe';
+import { PlayerEditComponent } from './components/player-edit/player-edit.component';
+import { EditFootballPlayerPageComponent } from './pages/edit-football-player-page/edit-football-player-page.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { GenderTextPipe } from './pipes/gender-text.pipe';
     FootballPlayerComponent,
     FootballPlayerListComponent,
     GenderTextPipe,
+    PlayerEditComponent,
+    EditFootballPlayerPageComponent,
   ],
   imports: [
     BrowserModule,

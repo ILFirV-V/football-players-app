@@ -6,7 +6,6 @@ import { SortOrder } from '../models/types/sort-order.type';
 import { IFootballPlayerResponse } from '../models/interfaces/response/player-interface-response';
 import { IFootballPlayer } from '../models/interfaces/request/football-player-interface';
 import { Gender } from '../models/enums/gender.enum';
-import { getGenderFromNumber } from '../helpers/gender-enum.converter';
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +27,12 @@ addPlayer(player: IFootballPlayer): Observable<IFootballPlayerResponse> {
     player.gender = Number(player.gender);
     return this.http.post<IFootballPlayerResponse>(`${this.url}`, player);
 }
+
+updatePlayer(player: IFootballPlayer): Observable<IFootballPlayerResponse> {
+    player.gender = Number(player.gender);
+    return this.http.post<IFootballPlayerResponse>(`${this.url}`, player);
+}
+
 
 sortByPlayers(products: IFootballPlayerResponse[], sortOption: SortOption, sortOrder: SortOrder): IFootballPlayerResponse[]{
     const sortingOptions: { 
