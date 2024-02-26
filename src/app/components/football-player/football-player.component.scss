@@ -1,0 +1,28 @@
+.football-player {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+  
+.football-player p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+  
+.football-player button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+  
+.football-player button:hover {
+    background-color: #0056b3;
+}

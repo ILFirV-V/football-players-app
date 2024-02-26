@@ -3,9 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-adding-football-players-page',
   template: `
-    <p>
-      adding-football-players-page works!
-    </p>
+    <app-player-add/>
   `,
   styleUrl: './adding-football-players-page.component.scss'
 })

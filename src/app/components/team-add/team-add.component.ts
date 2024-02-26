@@ -16,7 +16,6 @@ import { Team } from '../../models/team';
 export class TeamAddComponent {
     team: ITeam = new Team();
     isButtonDisabled: boolean = false;
-
     @Output() onChanged = new EventEmitter<boolean>();
 
     constructor(private teamService: TeamService) { }

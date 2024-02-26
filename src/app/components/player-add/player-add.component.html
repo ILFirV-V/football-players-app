@@ -38,8 +38,8 @@
       #gender="ngModel"
       [(ngModel)]="footballer.gender" 
       required>
-      <option value="0">Женский</option>
-      <option value="1">Мужской</option>
+      <option [value]="0">Женский</option>
+      <option [value]="1">Мужской</option>
     </select>
     <div [hidden]="gender.valid || gender.pristine" class="alert alert-danger">
       Нужно указать пол

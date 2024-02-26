@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TeamAddComponent } from './components/team-add/team-add.component';
+import { FootballPlayerComponent } from './components/football-player/football-player.component';
+import { FootballPlayerListComponent } from './components/football-player-list/football-player-list.component';
+import { GenderTextPipe } from './pipes/gender-text.pipe';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import { TeamAddComponent } from './components/team-add/team-add.component';
     AddingFootballPlayersPageComponent,
     ListFootballPlayersPageComponent,
     TeamAddComponent,
+    FootballPlayerComponent,
+    FootballPlayerListComponent,
+    GenderTextPipe,
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { PlayerService } from '../../services/players.service';
 import { Observable } from "rxjs";
 import { ITeamResponse } from '../../models/interfaces/response/team-interface-response';
 import { ICountryResponse } from '../../models/interfaces/response/country-interface-response';
+import { Gender } from "../../models/enums/gender.enum";
 
 @Component({
     selector: 'app-player-add',
@@ -25,7 +26,6 @@ export class PlayerAddComponent {
         private playerService: PlayerService,
         private teamService: TeamService,
     ) { }
-    
     ngOnInit(): void {
         this.teams$ = this.teamService.getTeams();
         this.countries$ = this.countryService.getCountries();

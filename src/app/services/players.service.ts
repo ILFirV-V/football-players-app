@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
 import { SortOption } from '../models/types/sort-option.type';
 import { SortOrder } from '../models/types/sort-order.type';
 import { IFootballPlayerResponse } from '../models/interfaces/response/player-interface-response';
 import { IFootballPlayer } from '../models/interfaces/request/football-player-interface';
+import { Gender } from '../models/enums/gender.enum';
+import { getGenderFromNumber } from '../helpers/gender-enum.converter';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +17,7 @@ export class PlayerService {
 constructor(private http: HttpClient) { }
 
 getPlayers(): Observable<IFootballPlayerResponse[]> {
-    return this.http.get<IFootballPlayerResponse[]>(`${this.url}`)
+    return this.http.get<IFootballPlayerResponse[]>(`${this.url}`);
 }
 
 getPlayerById(id: number): Observable<IFootballPlayerResponse> {
@@ -23,6 +25,7 @@ getPlayerById(id: number): Observable<IFootballPlayerResponse> {
 }
 
 addPlayer(player: IFootballPlayer): Observable<IFootballPlayerResponse> {
+    player.gender = Number(player.gender);
     return this.http.post<IFootballPlayerResponse>(`${this.url}`, player);
 }
 
