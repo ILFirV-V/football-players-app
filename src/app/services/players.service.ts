@@ -28,10 +28,9 @@ addPlayer(player: IFootballPlayer): Observable<IFootballPlayerResponse> {
     return this.http.post<IFootballPlayerResponse>(`${this.url}`, player);
 }
 
-updatePlayer(player: IFootballPlayerResponse): Observable<IFootballPlayerResponse> {
+updatePlayer(id: number, player: IFootballPlayer): Observable<IFootballPlayerResponse> {
     player.gender = Number(player.gender);
-    console.log(player);
-    return this.http.post<IFootballPlayerResponse>(`${this.url}/${player.id}`, player);
+    return this.http.post<IFootballPlayerResponse>(`${this.url}/${id}`, player);
 }
 
 

@@ -32,13 +32,15 @@ export class PlayerAddComponent {
     }
 
     onSubmit() { 
+        console.log(this.footballer);
         if (!this.areFieldsFilled())
         {
             console.log('Please fill in all fields before submitting.');
             return;
         }
         this.submitted = true;   
-        this.create(this.playerService);
+        this.create();
+
     }
 
     areFieldsFilled(): boolean {
@@ -52,15 +54,15 @@ export class PlayerAddComponent {
 
     onChanged() {
         this.teams$ = this.teamService.getTeams();
-        this.onChangedAddTeam();
+        this.onChangedAddTeamForm();
     }
 
-    onChangedAddTeam() {
+    onChangedAddTeamForm() {
         this.isViewAddTeam = !this.isViewAddTeam;
     }
 
-    private create(playerService: PlayerService) {
-        playerService.addPlayer(this.footballer).subscribe(
+    private create() {
+        this.playerService.addPlayer(this.footballer).subscribe(
             response => 
             {
               this.footballer = new Footballer();

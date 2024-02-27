@@ -17,7 +17,8 @@ import { Location } from '@angular/common';
     styleUrl: './player-edit.component.scss'
 })
 export class PlayerEditComponent {
-    footballer: IFootballPlayerResponse | IFootballPlayer = new Footballer();
+    id!: number;
+    footballer: IFootballPlayer = new Footballer();
     teams$?: Observable<ITeamResponse[]>;
     countries$?: Observable<ICountryResponse[]>;
     submitted = false;
@@ -50,7 +51,7 @@ export class PlayerEditComponent {
     areFieldsFilled(): boolean {
         return !!this.footballer.firstName 
             && !!this.footballer.lastName 
-            && !!this.footballer.teamId 
+            && !!this.footballer.teamId
             && !!this.footballer.countryId 
             && !!this.footballer.birthday 
             && !!this.footballer.gender;
@@ -70,7 +71,7 @@ export class PlayerEditComponent {
           console.error('a football player has no id');
           return;
         } 
-        this.playerService.updatePlayer(this.footballer).subscribe(
+        this.playerService.updatePlayer(this. id, this.footballer).subscribe(
             response => console.log('Update request successful', response),
             error => console.error('Error in update request', error),
         );
@@ -80,10 +81,15 @@ export class PlayerEditComponent {
         this.route.params
           .pipe(
             map(params => params['id']),
-            switchMap(id => this.playerService.getPlayerById(id))
+            switchMap(id => this.id = id),
+            switchMap(_ => this.playerService.getPlayerById(this.id)),
           )
           .subscribe(
-            response => this.footballer = response,
+            response => {
+                this.footballer = response;
+                this.footballer.countryId = response.country.id;
+                this.footballer.teamId = response.team.id;
+            },
             error => {
               console.error('Error in get request', error);
               if(error.status === 404) {

@@ -8,8 +8,6 @@ export interface IFootballPlayerResponse {
     lastName: string,
     gender: Gender,
     birthday: Date,
-    teamId: number,
     team: ITeamResponse,
-    countryId: number,
     country: ICountryResponse,
 }

@@ -38,8 +38,8 @@
       #gender="ngModel"
       [(ngModel)]="footballer.gender" 
       required>
-      <option [value]="0">Женский</option>
-      <option [value]="1">Мужской</option>
+      <option [value]="1">Женский</option>
+      <option [value]="2">Мужской</option>
     </select>
     <div [hidden]="gender.valid || gender.pristine" class="alert alert-danger">
       Нужно указать пол
@@ -91,7 +91,7 @@
     </div>
   </div>
   <button type="submit" class="btn btn-primary" [disabled]="!areFieldsFilled()">Добавить</button>
-  <button type="addTeam" class="btn btn-primary" (click) = "onChangedAddTeam()">Создать новую команду</button>
+  <button type="addTeam" class="btn btn-primary" (click) = "onChangedAddTeamForm()">Создать новую команду</button>
 </form>
 <app-team-add
     *ngIf="isViewAddTeam"

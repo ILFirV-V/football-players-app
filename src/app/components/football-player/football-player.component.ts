@@ -29,7 +29,6 @@ export class FootballPlayerComponent {
   }
   
   public ngOnInit(): void {
-    console.log(this.footballPlayer);
     this.assertInputsProvided();
   }
 }
