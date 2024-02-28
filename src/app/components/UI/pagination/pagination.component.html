@@ -1,7 +1,7 @@
 <div class="pagination">
     <button class="navigate" (click)="prevPage()" [disabled]="currentPage === 1">
       <p>
-        chevron_left
+        <
       </p>
     </button>
     <div *ngIf="totalPages() <= 3">
@@ -14,7 +14,7 @@
     </div>
     <button class="navigate" (click)="nextPage()" [disabled]="currentPage === totalPages()">
       <p>
-        chevron_right
+        >
       </p>
     </button>
   </div>
