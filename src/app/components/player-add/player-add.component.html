@@ -7,10 +7,10 @@
       name="firstName"
       #firstName="ngModel"
       [(ngModel)]="footballer.firstName" 
-      required >
+      required>
     <div [hidden]="firstName.valid || firstName.pristine"
       class="alert alert-danger">
-      Поле для имени нужно заполнить
+      Поле для имени нужно заполнить.
     </div>
   </div>
 
@@ -25,7 +25,7 @@
       required>
     <div [hidden]="lastName.valid || lastName.pristine"
       class="alert alert-danger">
-      Поле для фамилии нужно заполнить
+      Поле для фамилии нужно заполнить.
     </div>
   </div>
 
@@ -96,4 +96,4 @@
 <app-team-add
     *ngIf="isViewAddTeam"
     (onChanged)="onChanged()"
-></app-team-add>
+/>
