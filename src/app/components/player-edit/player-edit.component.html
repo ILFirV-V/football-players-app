@@ -1,101 +1,66 @@
-
 <form #footballerForm="ngForm">
     <div class="form-group">
-      <label for="firstName">Имя:</label>
-      <input type="text" 
-        class="form-control" 
-        id="firstName" 
-        name="firstName"
-        #firstName="ngModel"
-        [(ngModel)]="footballer.firstName" 
-        required >
-      <div [hidden]="firstName.valid || firstName.pristine"
-        class="alert alert-danger">
-        Поле для имени нужно заполнить
-      </div>
+        <label for="firstName">Имя:</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" #firstName="ngModel"
+            [(ngModel)]="footballer.firstName" pattern="^[^0-9]*$" required>
+        <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+            Поле для имени нужно заполнить. Поле не должно содеражть цифр
+        </div>
     </div>
-  
+
     <div class="form-group">
-      <label for="lastName">Фамилия:</label>
-      <input type="text" 
-        class="form-control" 
-        id="lastName" 
-        name="lastName" 
-        #lastName="ngModel"
-        [(ngModel)]="footballer.lastName" 
-        required>
-      <div [hidden]="lastName.valid || lastName.pristine"
-        class="alert alert-danger">
-        Поле для фамилии нужно заполнить
-      </div>
+        <label for="lastName">Фамилия:</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" #lastName="ngModel"
+            [(ngModel)]="footballer.lastName" pattern="^[^0-9]*$" required>
+        <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+            Поле для фамилии нужно заполнить. Поле не должно содеражть цифр
+        </div>
     </div>
-  
-  <div class="form-group">
-      <label for="gender">Пол:</label>
-      <select 
-        class="form-control" 
-        id="gender" 
-        name="gender" 
-        #gender="ngModel"
-        [(ngModel)]="footballer.gender" 
-        required>
-        <option [value]="1">Женский</option>
-        <option [value]="2">Мужской</option>
-      </select>
-      <div [hidden]="gender.valid || gender.pristine" class="alert alert-danger">
-        Нужно указать пол
-      </div>
+
+    <div class="form-group">
+        <label for="gender">Пол:</label>
+        <select class="form-control" id="gender" name="gender" #gender="ngModel" [(ngModel)]="footballer.gender"
+            required>
+            <option [value]="1">Женский</option>
+            <option [value]="2">Мужской</option>
+        </select>
+        <div [hidden]="gender.valid || gender.pristine" class="alert alert-danger">
+            Нужно указать пол
+        </div>
     </div>
     <div class="form-group">
-      <label for="birthday">Дата рождения:</label>
-      <input 
-        type="date" 
-        class="form-control" 
-        id="birthday" 
-        name="birthday" 
-        #birthday="ngModel"
-        [(ngModel)]="footballer.birthday" 
-        required>
-      <div [hidden]="birthday.valid || birthday.pristine" class="alert alert-danger">
-        Нужно указать дату рождения
-      </div>
+        <label for="birthday">Дата рождения:</label>
+        <input type="date" class="form-control" id="birthday" name="birthday" #birthday="ngModel"
+            [(ngModel)]="footballer.birthday" required>
+        <div [hidden]="birthday.valid || birthday.pristine" class="alert alert-danger">
+            Нужно указать дату рождения
+        </div>
     </div>
-  
+
     <div class="form-group">
-      <label for="team">Название команды:</label>
-      <select 
-        class="form-control" 
-        id="team" 
-        #team="ngModel"
-        [(ngModel)]="footballer.teamId" 
-        name="team" 
-        required>
-        <option *ngFor="let team of teams$ | async" [value]="team.id">{{team.name}}</option>
-      </select>
-      <div [hidden]="team.valid || team.pristine" class="alert alert-danger">
-        Нужно указать команду
-      </div>
+        <label for="team">Название команды:</label>
+        <select class="form-control" id="team" #team="ngModel" [(ngModel)]="footballer.teamId" name="team" required>
+            <option *ngFor="let team of teams$ | async" [value]="team.id">{{team.name}}</option>
+        </select>
+        <div [hidden]="team.valid || team.pristine" class="alert alert-danger">
+            Нужно указать команду
+        </div>
     </div>
     <div class="form-group">
-      <label for="countries">Страна:</label>
-      <select 
-        class="form-control" 
-        id="countries" 
-        #countries="ngModel"
-        [(ngModel)]="footballer.countryId" 
-        name="countries" 
-        required>
-        <option *ngFor="let country of countries$ | async" [value]="country.id">{{country.name}}</option>
-      </select>
-      <div [hidden]="countries.valid || countries.pristine" class="alert alert-danger">
-        Нужно указать страну
-      </div>
+        <label for="countries">Страна:</label>
+        <select class="form-control" id="countries" #countries="ngModel" [(ngModel)]="footballer.countryId"
+            name="countries" required>
+            <option *ngFor="let country of countries$ | async" [value]="country.id">{{country.name}}</option>
+        </select>
+        <div [hidden]="countries.valid || countries.pristine" class="alert alert-danger">
+            Нужно указать страну
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="goBack()">Назад</button>
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="!areFieldsFilled()">Изменить</button>
-    <button type="addTeam" class="btn btn-primary" (click) = "onChangedAddTeam()">Создать новую команду</button>
-  </form>
-  <app-team-add
-      *ngIf="isViewAddTeam"
-      (onChanged)="onChanged()"
-  ></app-team-add>
+    <div class="button-box">
+        <button type="submit" class="btn btn-primary" (click)="goBack()">Назад</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()"
+            [disabled]="!areFieldsFilled()">Изменить</button>
+        <button type="addTeam" class="btn btn-primary" (click)="onChangedAddTeam()">Создать новую команду</button>
+    </div>
+</form>
+<app-team-add *ngIf="isViewAddTeam" (onChanged)="onChanged()"></app-team-add>

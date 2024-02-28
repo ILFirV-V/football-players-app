@@ -1,4 +1,4 @@
 export interface ICountryResponse {
-    id: number, 
+    id: number,
     name: string,
 }

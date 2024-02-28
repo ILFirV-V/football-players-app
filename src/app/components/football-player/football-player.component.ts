@@ -24,7 +24,7 @@ export class FootballPlayerComponent {
             throw (new Error("The required input [footballPlayer] was not provided"));
         }
     }
-  
+
     public ngOnInit(): void {
         this.assertInputsProvided();
     }

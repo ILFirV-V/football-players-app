@@ -1,4 +1,4 @@
 export interface ITeamResponse {
-    id: number, 
+    id: number,
     name: string,
 }

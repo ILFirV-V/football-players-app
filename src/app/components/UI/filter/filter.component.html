@@ -3,7 +3,7 @@
         <label>Найти:</label>
         <input type="text" [(ngModel)]="searchValue" (input)="onSearch()" name="searchValue" placeholder="Поиск...">
     </form>
-  
+
     <div class="filters">
         <div class="sort-options">
             <label>Сортировать:</label>
@@ -11,7 +11,7 @@
                 <option *ngFor="let item of filters" [value]="item.value">{{item.name}}</option>
             </select>
         </div>
-  
+
         <div class="sort-order">
             <label>Порядок:</label>
             <select name="sortOrder" [(ngModel)]="currentSortOrder" (change)="onSortOrderChange()">

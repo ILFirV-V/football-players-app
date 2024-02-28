@@ -5,10 +5,10 @@ import { ListFootballPlayersPageComponent } from './pages/list-football-players-
 import { EditFootballPlayerPageComponent } from './pages/edit-football-player-page/edit-football-player-page.component';
 
 const routes: Routes = [
-    {path: '', component: ListFootballPlayersPageComponent},
-    {path: 'create', component: AddingFootballPlayersPageComponent},
-    {path: 'edit/:id', component: EditFootballPlayerPageComponent},
-    {path: '**', redirectTo: "", component: ListFootballPlayersPageComponent, pathMatch: 'full'},
+    { path: '', component: ListFootballPlayersPageComponent },
+    { path: 'create', component: AddingFootballPlayersPageComponent },
+    { path: 'edit/:id', component: EditFootballPlayerPageComponent },
+    { path: '**', redirectTo: "", component: ListFootballPlayersPageComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

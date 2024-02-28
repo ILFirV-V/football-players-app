@@ -30,7 +30,7 @@ export class PlayerEditComponent {
         private route: ActivatedRoute,
         private router: Router,
         private location: Location,
-    ){}
+    ) { }
 
     ngOnInit(): void {
         this.teams$ = this.teamService.getTeams();
@@ -38,9 +38,8 @@ export class PlayerEditComponent {
         this.getPlayer();
     }
 
-    onSubmit() { 
-        if (!this.areFieldsFilled())
-        {
+    onSubmit() {
+        if (!this.areFieldsFilled()) {
             console.log('Please fill in all fields before submitting.');
             return;
         }
@@ -48,11 +47,11 @@ export class PlayerEditComponent {
     }
 
     areFieldsFilled(): boolean {
-        return !!this.footballer.firstName 
-            && !!this.footballer.lastName 
+        return !!this.footballer.firstName
+            && !!this.footballer.lastName
             && !!this.footballer.teamId
-            && !!this.footballer.countryId 
-            && !!this.footballer.birthday 
+            && !!this.footballer.countryId
+            && !!this.footballer.birthday
             && !!this.footballer.gender;
     }
 
@@ -69,17 +68,17 @@ export class PlayerEditComponent {
         if (!('id' in this.footballer)) {
             console.error('a football player has no id');
             return;
-        } 
+        }
         this.playerService.updatePlayer(this.id, this.footballer).pipe(
-                take(1)
-            )
+            take(1)
+        )
             .subscribe(
                 response => console.log('Update request successful', response),
                 error => console.error('Error in update request', error),
             );
     }
 
-    private getPlayer(){
+    private getPlayer() {
         this.route.params
             .pipe(
                 take(1),
@@ -95,7 +94,7 @@ export class PlayerEditComponent {
                 },
                 error => {
                     console.error('Error in get request', error);
-                    if(error.status === 404) {
+                    if (error.status === 404) {
                         this.router.navigate(['/']);
                     }
                 }

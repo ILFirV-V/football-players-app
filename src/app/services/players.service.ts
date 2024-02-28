@@ -1,52 +1,54 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, map } from "rxjs";
+import { Observable } from "rxjs";
 import { SortOption } from '../models/types/sort-option.type';
 import { SortOrder } from '../models/types/sort-order.type';
 import { IFootballPlayerResponse } from '../models/interfaces/response/player-interface-response';
 import { IFootballPlayer } from '../models/interfaces/request/football-player-interface';
+import { API_URL } from './constants';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PlayerService {
-    url: string = `https://localhost:7024/players`;
+    url: string = `${API_URL}/players`;
 
-constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-getPlayers(): Observable<IFootballPlayerResponse[]> {
-    return this.http.get<IFootballPlayerResponse[]>(`${this.url}`);
-}
+    getPlayers(): Observable<IFootballPlayerResponse[]> {
+        return this.http.get<IFootballPlayerResponse[]>(`${this.url}`);
+    }
 
-getPlayerById(id: number): Observable<IFootballPlayerResponse> {
-    return this.http.get<IFootballPlayerResponse>(`${this.url}/${id}`);
-}
+    getPlayerById(id: number): Observable<IFootballPlayerResponse> {
+        return this.http.get<IFootballPlayerResponse>(`${this.url}/${id}`);
+    }
 
-addPlayer(player: IFootballPlayer): Observable<IFootballPlayerResponse> {
-    player.gender = Number(player.gender);
-    return this.http.post<IFootballPlayerResponse>(`${this.url}`, player);
-}
+    addPlayer(player: IFootballPlayer): Observable<IFootballPlayerResponse> {
+        player.gender = Number(player.gender);
+        return this.http.post<IFootballPlayerResponse>(`${this.url}/add`, player);
+    }
 
-updatePlayer(id: number, player: IFootballPlayer): Observable<IFootballPlayerResponse> {
-    player.gender = Number(player.gender);
-    return this.http.post<IFootballPlayerResponse>(`${this.url}/${id}`, player);
-}
+    updatePlayer(id: number, player: IFootballPlayer): Observable<IFootballPlayerResponse> {
+        player.gender = Number(player.gender);
+        return this.http.put<IFootballPlayerResponse>(`${this.url}/change/${id}`, player);
+    }
 
 
-sortByPlayers(products: IFootballPlayerResponse[], sortOption: SortOption, sortOrder: SortOrder): IFootballPlayerResponse[]{
-    const sortingOptions: { 
-        [key: string]: (a: IFootballPlayerResponse, b: IFootballPlayerResponse) => number; } = {
-            'id': (a:IFootballPlayerResponse, b: IFootballPlayerResponse) => a.id - b.id,
-            'firstName': (a:IFootballPlayerResponse, b: IFootballPlayerResponse) => a.firstName.localeCompare(b.firstName),
-            'lastName': (a:IFootballPlayerResponse, b: IFootballPlayerResponse) => a.lastName.localeCompare(b.lastName),
-            'team': (a:IFootballPlayerResponse, b: IFootballPlayerResponse) => a.team.name.localeCompare(b.team.name),
-            'country': (a:IFootballPlayerResponse, b: IFootballPlayerResponse) => a.country.name.localeCompare(b.country.name),
-            'birthday': (a:IFootballPlayerResponse, b: IFootballPlayerResponse) => new Date(a.birthday).getTime() - new Date(b.birthday).getTime(),
+    sortByPlayers(products: IFootballPlayerResponse[], sortOption: SortOption, sortOrder: SortOrder): IFootballPlayerResponse[] {
+        const sortingOptions: {
+            [key: string]: (a: IFootballPlayerResponse, b: IFootballPlayerResponse) => number;
+        } = {
+            'id': (a: IFootballPlayerResponse, b: IFootballPlayerResponse) => a.id - b.id,
+            'firstName': (a: IFootballPlayerResponse, b: IFootballPlayerResponse) => a.firstName.localeCompare(b.firstName),
+            'lastName': (a: IFootballPlayerResponse, b: IFootballPlayerResponse) => a.lastName.localeCompare(b.lastName),
+            'team': (a: IFootballPlayerResponse, b: IFootballPlayerResponse) => a.team.name.localeCompare(b.team.name),
+            'country': (a: IFootballPlayerResponse, b: IFootballPlayerResponse) => a.country.name.localeCompare(b.country.name),
+            'birthday': (a: IFootballPlayerResponse, b: IFootballPlayerResponse) => new Date(a.birthday).getTime() - new Date(b.birthday).getTime(),
         };
 
-    const sortFunction = sortingOptions[sortOption];
-    return products.sort((a, b) => sortOrder === "asc"
-        ? sortFunction(a, b)
-        : sortFunction(b, a));
-   }
+        const sortFunction = sortingOptions[sortOption];
+        return products.sort((a, b) => sortOrder === "asc"
+            ? sortFunction(a, b)
+            : sortFunction(b, a));
+    }
 }

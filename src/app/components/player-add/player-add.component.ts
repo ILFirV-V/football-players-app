@@ -9,67 +9,65 @@ import { ITeamResponse } from '../../models/interfaces/response/team-interface-r
 import { ICountryResponse } from '../../models/interfaces/response/country-interface-response';
 
 @Component({
-    selector: 'app-player-add',
-    templateUrl: './player-add.component.html',
-    styleUrl: './player-add.component.scss'
+	selector: 'app-player-add',
+	templateUrl: './player-add.component.html',
+	styleUrl: './player-add.component.scss'
 })
 export class PlayerAddComponent {
-    footballer: IFootballPlayer = new Footballer();
-    teams$: Observable<ITeamResponse[]> | undefined;
-    countries$: Observable<ICountryResponse[]> | undefined;
-    submitted = false;
-    isViewAddTeam: boolean = false;
+	footballer: IFootballPlayer = new Footballer();
+	teams$: Observable<ITeamResponse[]> | undefined;
+	countries$: Observable<ICountryResponse[]> | undefined;
+	submitted = false;
+	isViewAddTeam: boolean = false;
 
-    constructor(
-        private countryService: CountryService,
-        private playerService: PlayerService,
-        private teamService: TeamService,
-    ) { }
+	constructor(
+		private countryService: CountryService,
+		private playerService: PlayerService,
+		private teamService: TeamService,
+	) { }
 
-    ngOnInit(): void {
-        this.teams$ = this.teamService.getTeams();
-        this.countries$ = this.countryService.getCountries();
-    }
+	ngOnInit(): void {
+		this.teams$ = this.teamService.getTeams();
+		this.countries$ = this.countryService.getCountries();
+	}
 
-    onSubmit() { 
-        if (!this.areFieldsFilled())
-        {
-            console.log('Please fill in all fields before submitting.');
-            return;
-        }
-        this.submitted = true;   
-        this.create();
-    }
+	onSubmit() {
+		if (!this.areFieldsFilled()) {
+			console.log('Please fill in all fields before submitting.');
+			return;
+		}
+		this.submitted = true;
+		this.create();
+	}
 
-    areFieldsFilled(): boolean {
-        return !!this.footballer.firstName 
-            && !!this.footballer.lastName 
-            && !!this.footballer.teamId 
-            && !!this.footballer.countryId 
-            && !!this.footballer.birthday 
-            && !!this.footballer.gender;
-    }
+	areFieldsFilled(): boolean {
+		return !!this.footballer.firstName
+			&& !!this.footballer.lastName
+			&& !!this.footballer.teamId
+			&& !!this.footballer.countryId
+			&& !!this.footballer.birthday
+			&& !!this.footballer.gender;
+	}
 
-    onChanged() {
-        this.teams$ = this.teamService.getTeams();
-        this.onChangedAddTeamForm();
-    }
+	onChanged() {
+		this.teams$ = this.teamService.getTeams();
+		this.onChangedAddTeamForm();
+	}
 
-    onChangedAddTeamForm() {
-        this.isViewAddTeam = !this.isViewAddTeam;
-    }
+	onChangedAddTeamForm() {
+		this.isViewAddTeam = !this.isViewAddTeam;
+	}
 
-    private create() {
-        this.playerService.addPlayer(this.footballer).pipe(
-            take(1)
-        )
-        .subscribe(
-            response => 
-            {
-              this.footballer = new Footballer();
-              console.log('Post request successful', response);
-            },
-            error => console.error('Error in post request', error)
-        );
-    }
+	private create() {
+		this.playerService.addPlayer(this.footballer).pipe(
+			take(1)
+		)
+			.subscribe(
+				response => {
+					this.footballer = new Footballer();
+					console.log('Post request successful', response);
+				},
+				error => console.error('Error in post request', error)
+			);
+	}
 }

@@ -10,40 +10,40 @@ import { ListFootballPlayersPageComponent } from './pages/list-football-players-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { TeamAddComponent } from './components/team-add/team-add.component';
-import { FootballPlayerComponent } from './components/football-player/football-player.component';
 import { GenderTextPipe } from './pipes/gender-text.pipe';
+import { FootballPlayerComponent } from './components/football-player/football-player.component';
 import { PlayerEditComponent } from './components/player-edit/player-edit.component';
 import { EditFootballPlayerPageComponent } from './pages/edit-football-player-page/edit-football-player-page.component';
 import { PaginationComponent } from './components/UI/pagination/pagination.component';
 import { FilterComponent } from './components/UI/filter/filter.component';
+import { TeamAddComponent } from './components/team-add/team-add.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-    HeaderComponent,
-    PlayerAddComponent,
-    AddingFootballPlayersPageComponent,
-    ListFootballPlayersPageComponent,
-    TeamAddComponent,
-    FootballPlayerComponent,
-    GenderTextPipe,
-    PlayerEditComponent,
-    EditFootballPlayerPageComponent,
-    PaginationComponent,
-    FilterComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        FooterComponent,
+        HeaderComponent,
+        PlayerAddComponent,
+        AddingFootballPlayersPageComponent,
+        ListFootballPlayersPageComponent,
+        FootballPlayerComponent,
+        GenderTextPipe,
+        PlayerEditComponent,
+        EditFootballPlayerPageComponent,
+        PaginationComponent,
+        FilterComponent,
+        TeamAddComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        CommonModule,
+        FormsModule,
+        HttpClientModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
