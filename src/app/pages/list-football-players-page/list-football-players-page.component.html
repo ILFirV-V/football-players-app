@@ -1,0 +1,18 @@
+<div>
+    <app-filter
+        (sortOptionChanged)="onSortOptionChanged($event)"
+        (sortOrderChanged)="onSortOrderChanged($event)"
+        (searchChanged)="onSearch($event)"
+    />
+</div>
+<div>
+  <h2>Football Players List</h2>
+  <div *ngFor="let player of footballPlayers.slice((currentPage - 1) * playersPerPage, currentPage * playersPerPage)">
+    <app-football-player [footballPlayer]="player"/>
+  </div>
+  <app-pagination
+    [playersCount]="footballPlayers.length"
+    [playersPerPage]="playersPerPage"
+    (pageChange)="onPageChange($event)"
+  />
+</div>

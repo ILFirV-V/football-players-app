@@ -4,18 +4,18 @@ import { Observable } from "rxjs";
 import { ICountryResponse } from '../models/interfaces/response/country-interface-response';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CountryService {
-  url: string = `https://localhost:7024/countries`;
+    url: string = `https://localhost:7024/countries`;
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  getCountries(): Observable<ICountryResponse[]> {
-    return this.http.get<ICountryResponse[]>(`${this.url}`)
-  }
+    getCountries(): Observable<ICountryResponse[]> {
+        return this.http.get<ICountryResponse[]>(`${this.url}`)
+    }
 
-  getCountryById(id: number): Observable<ICountryResponse> {
-    return this.http.get<ICountryResponse>(`${this.url}/${id}`);
-  }
+    getCountryById(id: number): Observable<ICountryResponse> {
+        return this.http.get<ICountryResponse>(`${this.url}/${id}`);
+    }
 }

@@ -5,7 +5,6 @@ import { SortOption } from '../models/types/sort-option.type';
 import { SortOrder } from '../models/types/sort-order.type';
 import { IFootballPlayerResponse } from '../models/interfaces/response/player-interface-response';
 import { IFootballPlayer } from '../models/interfaces/request/football-player-interface';
-import { Gender } from '../models/enums/gender.enum';
 
 @Injectable({
     providedIn: 'root'

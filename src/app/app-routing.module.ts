@@ -5,17 +5,14 @@ import { ListFootballPlayersPageComponent } from './pages/list-football-players-
 import { EditFootballPlayerPageComponent } from './pages/edit-football-player-page/edit-football-player-page.component';
 
 const routes: Routes = [
-  {path: '', component: ListFootballPlayersPageComponent},
-  {path: 'create', component: AddingFootballPlayersPageComponent},
-  {path: 'edit/:id', component: EditFootballPlayerPageComponent},
-/*   {path: 'product/:id', component: ProductDetailsComponent, resolve: {data: ProductResolver}},
-  {path: 'favorites', component: FavoritesComponent},
-  {path: 'basket', component: BasketComponent},
-  {path: '**', redirectTo: "", component: BaseComponent, pathMatch: 'full'}, */
+    {path: '', component: ListFootballPlayersPageComponent},
+    {path: 'create', component: AddingFootballPlayersPageComponent},
+    {path: 'edit/:id', component: EditFootballPlayerPageComponent},
+    {path: '**', redirectTo: "", component: ListFootballPlayersPageComponent, pathMatch: 'full'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

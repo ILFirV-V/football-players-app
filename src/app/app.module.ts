@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/UI/footer/footer.component';
@@ -13,7 +12,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TeamAddComponent } from './components/team-add/team-add.component';
 import { FootballPlayerComponent } from './components/football-player/football-player.component';
-import { FootballPlayerListComponent } from './components/football-player-list/football-player-list.component';
 import { GenderTextPipe } from './pipes/gender-text.pipe';
 import { PlayerEditComponent } from './components/player-edit/player-edit.component';
 import { EditFootballPlayerPageComponent } from './pages/edit-football-player-page/edit-football-player-page.component';
@@ -31,7 +29,6 @@ import { FilterComponent } from './components/UI/filter/filter.component';
     ListFootballPlayersPageComponent,
     TeamAddComponent,
     FootballPlayerComponent,
-    FootballPlayerListComponent,
     GenderTextPipe,
     PlayerEditComponent,
     EditFootballPlayerPageComponent,

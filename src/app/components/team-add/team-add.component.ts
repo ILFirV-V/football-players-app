@@ -1,12 +1,12 @@
 import {
   Component,
   EventEmitter,
-  Input,
   Output,
 } from '@angular/core';
 import { TeamService } from '../../services/team.service';
 import { ITeam } from '../../models/interfaces/request/team-interface';
 import { Team } from '../../models/team';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-team-add',
@@ -27,7 +27,9 @@ export class TeamAddComponent {
     onSubmit() { 
         if (this.areFieldsFilled()) {
             this.isButtonDisabled = true;   
-            this.teamService.addTeam(this.team).subscribe(
+            this.teamService.addTeam(this.team).pipe(
+              take(1)
+            ).subscribe(
               response => 
               {
                 this.change();

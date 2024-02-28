@@ -4,7 +4,7 @@ import { Footballer } from '../../models/football-player';
 import { CountryService } from '../../services/country.service';
 import { TeamService } from '../../services/team.service';
 import { PlayerService } from '../../services/players.service';
-import { Observable } from "rxjs";
+import { Observable, take } from "rxjs";
 import { ITeamResponse } from '../../models/interfaces/response/team-interface-response';
 import { ICountryResponse } from '../../models/interfaces/response/country-interface-response';
 
@@ -32,7 +32,6 @@ export class PlayerAddComponent {
     }
 
     onSubmit() { 
-        console.log(this.footballer);
         if (!this.areFieldsFilled())
         {
             console.log('Please fill in all fields before submitting.');
@@ -40,7 +39,6 @@ export class PlayerAddComponent {
         }
         this.submitted = true;   
         this.create();
-
     }
 
     areFieldsFilled(): boolean {
@@ -62,7 +60,10 @@ export class PlayerAddComponent {
     }
 
     private create() {
-        this.playerService.addPlayer(this.footballer).subscribe(
+        this.playerService.addPlayer(this.footballer).pipe(
+            take(1)
+        )
+        .subscribe(
             response => 
             {
               this.footballer = new Footballer();

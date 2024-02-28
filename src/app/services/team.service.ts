@@ -5,22 +5,22 @@ import { ITeamResponse } from '../models/interfaces/response/team-interface-resp
 import { ITeam } from '../models/interfaces/request/team-interface';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TeamService {
-  url: string = `https://localhost:7024/teams`;
+    url: string = `https://localhost:7024/teams`;
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  getTeams(): Observable<ITeamResponse[]> {
-    return this.http.get<ITeamResponse[]>(`${this.url}`)
-  }
+    getTeams(): Observable<ITeamResponse[]> {
+        return this.http.get<ITeamResponse[]>(`${this.url}`)
+    }
 
-  getTeamById(id: number): Observable<ITeamResponse> {
-    return this.http.get<ITeamResponse>(`${this.url}/${id}`);
-  }
+    getTeamById(id: number): Observable<ITeamResponse> {
+        return this.http.get<ITeamResponse>(`${this.url}/${id}`);
+    }
 
-  addTeam(team: ITeam): Observable<ITeam> {
-    return this.http.post<ITeam>(`${this.url}`, team);
-  }
+    addTeam(team: ITeam): Observable<ITeam> {
+        return this.http.post<ITeam>(`${this.url}`, team);
+    }
 }

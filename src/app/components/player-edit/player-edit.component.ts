@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IFootballPlayerResponse } from '../../models/interfaces/response/player-interface-response';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, map, switchMap, take } from 'rxjs';
 import { ITeamResponse } from '../../models/interfaces/response/team-interface-response';
 import { ICountryResponse } from '../../models/interfaces/response/country-interface-response';
 import { CountryService } from '../../services/country.service';
@@ -68,35 +67,39 @@ export class PlayerEditComponent {
 
     private edit() {
         if (!('id' in this.footballer)) {
-          console.error('a football player has no id');
-          return;
+            console.error('a football player has no id');
+            return;
         } 
-        this.playerService.updatePlayer(this. id, this.footballer).subscribe(
-            response => console.log('Update request successful', response),
-            error => console.error('Error in update request', error),
-        );
+        this.playerService.updatePlayer(this.id, this.footballer).pipe(
+                take(1)
+            )
+            .subscribe(
+                response => console.log('Update request successful', response),
+                error => console.error('Error in update request', error),
+            );
     }
 
     private getPlayer(){
         this.route.params
-          .pipe(
-            map(params => params['id']),
-            switchMap(id => this.id = id),
-            switchMap(_ => this.playerService.getPlayerById(this.id)),
-          )
-          .subscribe(
-            response => {
-                this.footballer = response;
-                this.footballer.countryId = response.country.id;
-                this.footballer.teamId = response.team.id;
-            },
-            error => {
-              console.error('Error in get request', error);
-              if(error.status === 404) {
-                this.router.navigate(['/']);
-              }
-            }
-          );
+            .pipe(
+                take(1),
+                map(params => params['id']),
+                switchMap(id => this.id = id),
+                switchMap(_ => this.playerService.getPlayerById(this.id)),
+            )
+            .subscribe(
+                response => {
+                    this.footballer = response;
+                    this.footballer.countryId = response.country.id;
+                    this.footballer.teamId = response.team.id;
+                },
+                error => {
+                    console.error('Error in get request', error);
+                    if(error.status === 404) {
+                        this.router.navigate(['/']);
+                    }
+                }
+            );
     }
 
     goBack(): void {
