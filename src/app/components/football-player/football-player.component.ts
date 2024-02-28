@@ -9,6 +9,8 @@ import { IFootballPlayerResponse } from '../../models/interfaces/response/player
       <p>Фамилия: {{ footballPlayer.lastName }}</p>
       <p>Пол: {{ footballPlayer.gender | genderText }}</p>
       <p>Дата рождения: {{ footballPlayer.birthday | date:'dd.MM.yyyy' }}</p>
+      <p>Команда: {{ footballPlayer.team.name }}</p>
+      <p>Страна: {{ footballPlayer.country.name }}</p>
       <a routerLink="/edit/{{footballPlayer.id}}">Редактировать</a>
     </div>
   `,

@@ -1,1 +1,1 @@
-export type SortOption = "id" | "name" | "surname" | "team" | "country" | "birthday";
+export type SortOption = "id" | "firstName" | "lastName" | "team" | "country" | "birthday";

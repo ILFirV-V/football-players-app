@@ -17,6 +17,8 @@ import { FootballPlayerListComponent } from './components/football-player-list/f
 import { GenderTextPipe } from './pipes/gender-text.pipe';
 import { PlayerEditComponent } from './components/player-edit/player-edit.component';
 import { EditFootballPlayerPageComponent } from './pages/edit-football-player-page/edit-football-player-page.component';
+import { PaginationComponent } from './components/UI/pagination/pagination.component';
+import { FilterComponent } from './components/UI/filter/filter.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { EditFootballPlayerPageComponent } from './pages/edit-football-player-pa
     GenderTextPipe,
     PlayerEditComponent,
     EditFootballPlayerPageComponent,
+    PaginationComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { EditFootballPlayerPageComponent } from './pages/edit-football-player-pa
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
